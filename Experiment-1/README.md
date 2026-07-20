@@ -1,7 +1,7 @@
 # Experiment 1
 
-## Title
-Contains Duplicate II
+## Aim
+Contains Duplicate
 
 ## Problem Statement
 
