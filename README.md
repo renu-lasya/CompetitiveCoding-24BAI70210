@@ -2,7 +2,7 @@
 
 ## Student Details
 
-Name: Renu Lasya
+Name: RenuLasya reddy
 Roll No: 24BAI70210
 Branch: AIML
 
