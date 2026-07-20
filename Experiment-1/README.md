@@ -1,8 +1,9 @@
 # Experiment 1
 
 ## Aim
-To solve the Plus One problem using C++.
+Contains-Duplicate problem using C++.
 
 ## Files
-- PlusOne.cpp
+- bruteforce.cpp
+- hashing.cpp
 - Outputs
