@@ -1,3 +1,3 @@
 # Output Screenshots
 
-Store the output screenshots for Experiment 3 here.
+ outputs of BRUTEFORCE, LOWERBOUND, OPTIMAL BINARYSEARCH
