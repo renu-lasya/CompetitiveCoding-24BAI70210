@@ -1,4 +1,4 @@
-# Experiment 4 Outputs
+# Experiment 2.2 Outputs
 
 This folder contains the output screenshots for Experiment 4.
 
