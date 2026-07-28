@@ -1,4 +1,4 @@
-# Experiment 3 - Search Insert Position
+# Experiment 2.1- Search Insert Position
 
 ## Problem
 Find the index of the target element in a sorted array. If the target is not present, return the index where it should be inserted.
