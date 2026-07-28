@@ -1,4 +1,4 @@
-# Experiment 4 - Search in Rotated Sorted Array
+# Experiment 2.2 - Search in Rotated Sorted Array
 
 ## Problem
 Search a target element in a rotated sorted array.
