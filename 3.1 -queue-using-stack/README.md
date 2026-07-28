@@ -1,4 +1,4 @@
-# 3.1 Queue Using One Stack
+# 3.1 Queue Using  Stack
 
 ## Aim
 To implement a Queue using a single Stack in C++.
