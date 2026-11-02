@@ -1,9 +1,11 @@
 #include <iostream>
 #include <vector>
+#include <unordered_map>
 #include <queue>
 using namespace std;
 
-struct TreeNode {
+class TreeNode {
+public:
     int val;
     TreeNode *left, *right;
 
@@ -13,29 +15,56 @@ struct TreeNode {
     }
 };
 
-TreeNode* build(vector<int>& nums, int lo, int hi) {
+TreeNode* build(vector<int>& pre, int preL, int preR,
+                vector<int>& in, int inL, int inR,
+                unordered_map<int, int>& idx) {
 
-    if (lo > hi)
+    if (preL > preR)
         return nullptr;
 
-    int mid = lo + (hi - lo) / 2;
+    int rootValue = pre[preL];
 
-    TreeNode* node = new TreeNode(nums[mid]);
+    int mid = idx[rootValue];
 
-    node->left = build(nums, lo, mid - 1);
+    int leftSize = mid - inL;
 
-    node->right = build(nums, mid + 1, hi);
+    TreeNode* root = new TreeNode(rootValue);
 
-    return node;
+    root->left = build(pre,
+                       preL + 1,
+                       preL + leftSize,
+                       in,
+                       inL,
+                       mid - 1,
+                       idx);
+
+    root->right = build(pre,
+                        preL + leftSize + 1,
+                        preR,
+                        in,
+                        mid + 1,
+                        inR,
+                        idx);
+
+    return root;
 }
 
-TreeNode* sortedArrayToBST(vector<int>& nums) {
-    return build(nums, 0, nums.size() - 1);
+TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+
+    unordered_map<int, int> idx;
+
+    for (int i = 0; i < inorder.size(); i++) {
+        idx[inorder[i]] = i;
+    }
+
+    return build(preorder, 0, preorder.size() - 1,
+                 inorder, 0, inorder.size() - 1, idx);
 }
 
-void levelOrder(TreeNode* root) {
+void printTree(TreeNode* root) {
+
     if (!root) {
-        cout << "Empty Tree";
+        cout << "Empty tree";
         return;
     }
 
@@ -43,36 +72,42 @@ void levelOrder(TreeNode* root) {
     q.push(root);
 
     while (!q.empty()) {
-        TreeNode* cur = q.front();
+        TreeNode* curr = q.front();
         q.pop();
 
-        cout << cur->val << " ";
+        cout << curr->val << " ";
 
-        if (cur->left)
-            q.push(cur->left);
+        if (curr->left)
+            q.push(curr->left);
 
-        if (cur->right)
-            q.push(cur->right);
+        if (curr->right)
+            q.push(curr->right);
     }
 }
 
 int main() {
+
     int n;
 
-    cout << "Enter array size: ";
+    cout << "Enter number of nodes: ";
     cin >> n;
 
-    vector<int> nums(n);
+    vector<int> preorder(n), inorder(n);
 
-    cout << "Enter sorted array: ";
+    cout << "Enter preorder traversal: ";
     for (int i = 0; i < n; i++) {
-        cin >> nums[i];
+        cin >> preorder[i];
     }
 
-    TreeNode* root = sortedArrayToBST(nums);
+    cout << "Enter inorder traversal: ";
+    for (int i = 0; i < n; i++) {
+        cin >> inorder[i];
+    }
 
-    cout << "Balanced BST Level Order: ";
-    levelOrder(root);
+    TreeNode* root = buildTree(preorder, inorder);
+
+    cout << "Level order traversal: ";
+    printTree(root);
 
     return 0;
 }
